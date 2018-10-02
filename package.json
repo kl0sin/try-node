@@ -1,0 +1,23 @@
+{
+  "name": "try-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kl0sin/try-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kl0sin/try-node/issues"
+  },
+  "homepage": "https://github.com/kl0sin/try-node#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "morgan": "^1.9.1"
+  }
+}

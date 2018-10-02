@@ -1,14 +1,32 @@
-const http = require('http');
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
 
-const hostname = '127.0.0.1';
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-type', 'text/plain');
-    res.end('Hello World\n');
+app.use(morgan('combined'));
+
+app.get('/', (req, res) => {
+    console.log('Responding to root route');
+    res.send("Hello from root!");
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`);
+app.get('/users', (req, res) => {
+    console.log('Get users data');
+
+    const user = {
+        firstName: 'John',
+        lastName: 'Colins'
+    };
+    const user1 = {
+        firstName: 'Tony',
+        lastName: 'Durant'
+    }
+
+    res.json([user, user1])
+
+});
+
+app.listen(port, () => {
+    console.log(`Server is up and listening on ${port}...`);
 });
