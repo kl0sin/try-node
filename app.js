@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
     database: 'try-node'
 });
 
-app.use(morgan('combined'));
+app.use(morgan('short'));
 
 app.get('/', (req, res) => {
     console.log('Responding on root route!');
