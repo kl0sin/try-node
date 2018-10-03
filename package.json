@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "circli": "^1.1.1",
     "express": "^4.16.3",
     "morgan": "^1.9.1",
     "mysql": "^2.16.0",
