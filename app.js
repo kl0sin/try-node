@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const port = 3000;
 
@@ -12,7 +14,12 @@ const connection = mysql.createConnection({
     database: 'try-node'
 });
 
-app.use(morgan('short'));
+app.use(cors());
+
+app.use(morgan('combined'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     console.log('Responding on root route!');
@@ -69,6 +76,23 @@ app.get('/users/', (req, res) => {
         console.log('Fetching for users complete successfully');
         res.json(users);
     });
+});
+
+app.post('/user', (req, res) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const queryString = 'INSERT INTO users (first_name, last_name) VALUES (?, ?)';
+    
+    connection.query(queryString, [firstName, lastName], (err, results, fields) => {
+        if (err) {
+            console.log('Failed to insert new user: ' + err)
+            res.sendStatus(500)
+            return
+        }
+        console.log('Inserted a new user with id: ', results.insertId);
+        res.end();
+    })
+
 });
 
 app.listen(port, () => {
