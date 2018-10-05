@@ -37,7 +37,6 @@ export default {
         lastName: this.lastName
       }
       this.$http.post('http://localhost:3000/user', user).then(function(response) {
-        console.log(response.body)
       }, function(response) {
         console.log('errors!')
       });
